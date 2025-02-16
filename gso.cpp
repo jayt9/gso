@@ -31,6 +31,7 @@ float dot_product(vector<float> a, vector<float> b) {
 float scalar(vector<float> a, vector<float> b) {
     float result;
     result = dot_product(a,b)/dot_product(a,a);
+    return result;
 };
 
 //Subtract two vectors
@@ -51,7 +52,7 @@ vector<float> scalar_mult(vector<float> a, float b) {
 }
 
 //Make 2 vectors perpendicular
-vector<float> orthogonolize(vector<float> a, vector<float> b) {
+vector<float> orthogonalize(vector<float> a, vector<float> b) {
     vector<float> orthogonal_vector;
     orthogonal_vector = subtract(b,(
         scalar_mult(a,scalar(a,b))
@@ -60,10 +61,10 @@ vector<float> orthogonolize(vector<float> a, vector<float> b) {
 };
 
 //Requires three independent vectors 
-vector<float> gso(vector<float> a, vector<float> b, vector<float> c) {
+vector<vector<float>> gso(vector<float> a, vector<float> b, vector<float> c) {
     vector<float> v1, v2, v3;
     v1 = a;
-    v2 = orthogonolize(a, b);
-    v3 = subtract(c, subtract(orthogonolize(a,c), orthogonolize(b,c)));
-    return v1, v2, v3;
+    v2 = orthogonalize(a, b);
+    v3 = subtract(c, subtract(orthogonalize(a,c), orthogonalize(b,c)));
+    return {v1, v2, v3};
 };
