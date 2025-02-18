@@ -68,3 +68,23 @@ vector<vector<float>> gso(vector<float> a, vector<float> b, vector<float> c) {
     v3 = subtract(c, subtract(orthogonalize(a,c), orthogonalize(b,c)));
     return {v1, v2, v3};
 };
+
+int main() {
+    vector<vector<float>> result;
+	int i = 0;
+	int e = 0;
+	vector<float> v1(3), v2(3), v3(3);
+	while (i<3) {
+		cout << "Row: ";
+		cin >> v1[i] >> v2[i] >> v3[i];
+		cout << endl;
+		i += 1;
+	};
+	result = gso(v1, v2, v3);
+	for (size_t i = 0; i < result.size(); ++i) {
+        for (size_t j = 0; j < result[i].size(); ++j) {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
+};
