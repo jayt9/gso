@@ -5,9 +5,9 @@ using namespace std;
 //Make sure length of vectors are equal!!! Check independence!!! 
 
 //Return unit vector 
-vector<float> normalize(vector<float> a) {
-    vector<float> b(a.size());
-    float length = 0.0;
+vector<double> normalize(vector<double> a) {
+    vector<double> b(a.size());
+    double length = 0.0;
     for (int i=0;i<a.size();i++) {
         length += (a[i]*a[i]);
     };
@@ -19,8 +19,8 @@ vector<float> normalize(vector<float> a) {
 };
 
 //Dot product of two vectors
-float dot_product(vector<float> a, vector<float> b) {
-    float result = 0.0;
+double dot_product(vector<double> a, vector<double> b) {
+    double result = 0.0;
     for (int i=0;i<a.size();i++) {
         result += (a[i]*b[i]);
     };
@@ -28,23 +28,23 @@ float dot_product(vector<float> a, vector<float> b) {
 };
 
 //When orthogonalizing b to a, the scalar you will multiply a by before subtracting from b
-float scalar(vector<float> a, vector<float> b) {
-    float result;
+double scalar(vector<double> a, vector<double> b) {
+    double result;
     result = dot_product(a,b)/dot_product(a,a);
     return result;
 };
 
 //Subtract two vectors
-vector<float> subtract(vector<float> a, vector<float> b) {
-    vector<float> new_vector(a.size());
+vector<double> subtract(vector<double> a, vector<double> b) {
+    vector<double> new_vector(a.size());
     for (int i=0;i<a.size();i++) {
         new_vector[i] = (a[i] - b[i]);
     };
     return new_vector;
 };
 
-vector<float> scalar_mult(vector<float> a, float b) {
-    vector<float> result;
+vector<double> scalar_mult(vector<double> a, double b) {
+    vector<double> result;
     for (int i=0;i<a.size();i++) {
         result.push_back(a[i]*b);
     };
@@ -52,8 +52,8 @@ vector<float> scalar_mult(vector<float> a, float b) {
 }
 
 //Make 2 vectors perpendicular
-vector<float> orthogonalize(vector<float> a, vector<float> b) {
-    vector<float> orthogonal_vector;
+vector<double> orthogonalize(vector<double> a, vector<double> b) {
+    vector<double> orthogonal_vector;
     orthogonal_vector = subtract(b,(
         scalar_mult(a,scalar(a,b))
     ));
@@ -61,8 +61,8 @@ vector<float> orthogonalize(vector<float> a, vector<float> b) {
 };
 
 //Requires three independent vectors 
-vector<vector<float>> gso(vector<float> a, vector<float> b, vector<float> c) {
-    vector<float> v1, v2, v3;
+vector<vector<double>> gso(vector<double> a, vector<double> b, vector<double> c) {
+    vector<double> v1, v2, v3;
     v1 = a;
     v2 = orthogonalize(a, b);
     v3 = subtract(c, subtract(orthogonalize(a,c), orthogonalize(b,c)));
@@ -70,10 +70,12 @@ vector<vector<float>> gso(vector<float> a, vector<float> b, vector<float> c) {
 };
 
 int main() {
-    vector<vector<float>> result;
+    vector<vector<double>> result;
 	int i = 0;
 	int e = 0;
-	vector<float> v1(3), v2(3), v3(3);
+	vector<double> v1(3), v2(3), v3(3);
+	cout.precision(6);
+	cout << fixed;
 	while (i<3) {
 		cout << "Row: ";
 		cin >> v1[i] >> v2[i] >> v3[i];
