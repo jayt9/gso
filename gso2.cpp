@@ -19,14 +19,6 @@ Vector multiply(double scalar, const Vector&a) {
 	return {scalar*a[0],scalar*a[1],scalar*a[2]};
 };
 
-double length(const Vector& a) {
-	return sqrt(dot(a,a));
-};
-
-Vector normalize(const Vector& a) {
-	return {a[0]/length,a[1]/length,a[2]/length};
-};
-
 int main() {
 	Vector v1, v2, v3;
 	cout << "Enter first vector components: ";
