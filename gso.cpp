@@ -65,7 +65,7 @@ vector<vector<double>> gso(vector<double> a, vector<double> b, vector<double> c)
     vector<double> v1, v2, v3;
     v1 = a;
     v2 = orthogonalize(a, b);
-    v3 = subtract(c, subtract(orthogonalize(a,c), orthogonalize(b,c)));
+    v3 = subtract(c, subtract(orthogonalize(a,c), orthogonalize(v2,c)));
     return {v1, v2, v3};
 };
 
