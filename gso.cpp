@@ -70,7 +70,7 @@ vector<vector<double>> gso(vector<double> a, vector<double> b, vector<double> c)
     return {v1, v2, v3};
 };
 
-int det(vector<double> a, vector<double> b, vector<double> c) {
+double det(vector<double> a, vector<double> b, vector<double> c) {
 	double i1, i2, i3, e1, e2, e3, determinant;
 	i1 = a[0]*b[1]*c[2];
 	i2 = a[1]*b[2]*c[0];
@@ -98,6 +98,7 @@ int main() {
 		cout << endl;
 		i += 1;
 	};
+	int is_indpendent = det(v1,v2,v3);
 	result = gso(v1, v2, v3);
 	for (size_t i = 0; i < result.size(); ++i) {
         for (size_t j = 0; j < result[i].size(); ++j) {
