@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <stdexcept>
 using namespace std;
 //Make sure length of vectors are equal!!! Check independence!!! 
 
@@ -68,6 +69,21 @@ vector<vector<double>> gso(vector<double> a, vector<double> b, vector<double> c)
     v3 = subtract(c, subtract(orthogonalize(a,c), orthogonalize(v2,c)));
     return {v1, v2, v3};
 };
+
+int det(vector<double> a, vector<double> b, vector<double> c) {
+	double i1, i2, i3, e1, e2, e3, determinant;
+	i1 = a[0]*b[1]*c[2];
+	i2 = a[1]*b[2]*c[0];
+	i3 = a[2]*b[0]*c[1];
+	e1 = c[0]*b[1]*a[2];
+	e2 = c[1]*b[2]*a[0];
+	e3 = c[2]*b[0]*a[1];
+	determinant = (i1+i2+i3)-(e1+e2+e3);
+	if (determinant == 0) {
+		throw runtime_error("Use independent vectors!!!");
+	};
+	return determinant;
+}
 
 int main() {
     vector<vector<double>> result;
